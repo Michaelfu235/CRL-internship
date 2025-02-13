@@ -44,7 +44,11 @@ def close_connection(exception):
 @app.route('/')
 def index():
 #    data = get_db()
-    return render_template('index.html')
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM parts")
+    parts = cursor.fetchall()
+    return render_template('index.html', parts=parts)
 
 #adds a new part to the database
 @app.route('/add', methods=['POST'])
@@ -139,14 +143,14 @@ def delete_part():
     return redirect(url_for('index'))
     
 
-@app.route('/view', methods=['GET'])
-def view_parts():
-    #function that retrieves and displays all parts (ID, name, and amount)
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM parts")
-    parts = cursor.fetchall()
-    return render_template('view.html', parts=parts)
+#@app.route('/view', methods=['GET'])
+#def view_parts():
+#    #function that retrieves and displays all parts (ID, name, and amount)
+ #   db = get_db()
+#    cursor = db.cursor()
+#    cursor.execute("SELECT * FROM parts")
+#    parts = cursor.fetchall()
+#    return render_template('view.html', parts=parts)
 
 
 @app.route('/deleteall', methods=['GET'])
@@ -156,7 +160,7 @@ def delete_all():
     cursor = db.cursor()
     cursor.execute("DELETE FROM parts")
     db.commit()
-    return redirect(url_for('view_parts'))
+    return render_template('index.html')
 
     
     

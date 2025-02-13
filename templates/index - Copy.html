@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<h1>Michael Fu CRL Internship Assignment</h1>
+<p>A website designed to create, read, update, and delete from a database.</p>
+
+{% if messages %}
+    <div class="messages">
+        {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<form action="/add" method="POST">
+    <label for="id">Part ID:</label><br>
+    <input type="text" id="id" name="id"><br>
+    <label for="name">Part Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="amnt">Part Amount:</label><br>
+    <input type="text" id="amnt" name="amnt"><br>
+    <input type="submit" value="Add">
+</form>
+
+<form action="/edit" method="POST">
+    <label for="id">Part ID:</label><br>
+    <input type="text" id="id" name="id"><br>
+    <label for="amnt">New Part Amount:</label><br>
+    <input type="text" id="amnt" name="amnt"><br>
+    <input type="submit" value="Edit">
+</form>
+
+<form action="/delete" method="POST">
+    <label for="id">Part ID:</label><br>
+    <input type="text" id="id" name="id"><br>
+    <input type="submit" value="Delete">
+</form>
+
+<form action="/view" method="GET">
+    <input type="submit" value="View All Parts">
+</form>
+
+<form action="/deleteall" method = "GET">
+<input type = "submit" value = "Delete All Parts">
+</form>
+
+
+
+</body>
+</html>
