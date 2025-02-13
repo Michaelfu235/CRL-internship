@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Parts List</h1>
+
+<table border="1">
+    <tr>
+        <th>Part ID</th>
+        <th>Part Name</th>
+        <th>Amount</th>
+    </tr>
+    {% for part in parts %}
+    <tr>
+        <td>{{ part[0] }}</td>
+        <td>{{ part[1] }}</td>
+        <td>{{ part[2] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/">Go Back</a>
+
+</body>
+</html>
